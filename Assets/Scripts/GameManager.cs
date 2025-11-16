@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     public GameObject enemyTwoPrefab;
     public GameObject enemyOnePrefab;
     public GameObject cloudPrefab;
+    public TextMeshProUGUI scoreText;
+    public GameObject coinPrefab;
+
+
 
     public TextMeshProUGUI livesText;
 
@@ -23,13 +27,20 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Camera cam = Camera.main;
+
         verticalScreenSize = cam.orthographicSize;
         horizontalScreenSize = verticalScreenSize * cam.aspect;
+
         score = 0;
+        scoreText.text = "Score: 0";
+
         Instantiate(playerPrefab, transform.position, Quaternion.identity);
         CreateSky();
+
         InvokeRepeating("CreateEnemy", 1, 3);
+        InvokeRepeating("SpawnCoin", 2, 5); 
     }
+
 
     // Update is called once per frame
     void Update()
@@ -37,7 +48,11 @@ public class GameManager : MonoBehaviour
         
     }
 
-
+    public void AddScore(int earnedScore)
+    {
+        score += earnedScore;
+        scoreText.text = "Score: " + score;
+    }
 
 void CreateEnemy()
 {
@@ -76,6 +91,35 @@ void CreateEnemy()
 
     Debug.Log("Could not find a free spot for enemy this cycle.");
 }
+    void SpawnCoin()
+    {
+        float halfWidth = 0.5f;
+        float halfHeight = 0.5f;
+
+        // Get renderer size if available
+        Renderer rend = coinPrefab.GetComponent<Renderer>();
+        if (rend != null)
+        {
+            Vector3 size = rend.bounds.size;
+            halfWidth = size.x / 2f;
+            halfHeight = size.y / 2f;
+        }
+
+        // X still uses camera bounds
+        float spawnX = Random.Range(-horizontalScreenSize + halfWidth, horizontalScreenSize - halfWidth);
+
+        // Y restricted to -3.5 to 0
+        float spawnY = Random.Range(-3.5f + halfHeight, 0f - halfHeight);
+
+        Vector3 spawnPos = new Vector3(spawnX, spawnY, 0f);
+
+        GameObject coin = Instantiate(coinPrefab, spawnPos, Quaternion.identity);
+
+        // Auto-delete after 3 sec
+        Destroy(coin, 3f);
+    }
+
+
 
     void CreateSky()
     {
@@ -85,10 +129,7 @@ void CreateEnemy()
         }
         
     }
-    public void AddScore(int earnedScore)
-    {
-        score = score + earnedScore;
-    }
+
 
     public void ChangeLivesText (int currentLives)
     {
