@@ -149,7 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   playerPrefab: {fileID: 6496067564202980616, guid: f2800991182f38646b7ae90f474eb2ef, type: 3}
-  enemyOnePrefab: {fileID: 75514588074258907, guid: 42c7329458ec0eb41b2fcf89033f24b7, type: 3}
+  enemyTwoPrefab: {fileID: 3984937058499595412, guid: 42053de5c2aec1d49a4c6718ad7f0d06, type: 3}
+  enemyOnePrefab: {fileID: 3984937058499595412, guid: 42c7329458ec0eb41b2fcf89033f24b7, type: 3}
   cloudPrefab: {fileID: 5087387896901980618, guid: 71f56561b58ce574e9751e08f3a3d51e, type: 3}
   livesText: {fileID: 0}
   horizontalScreenSize: 6

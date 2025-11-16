@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2196349402626614098}
   - component: {fileID: 6543127488054210934}
   - component: {fileID: 5416971400319869197}
+  - component: {fileID: 4229694915316365648}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -105,9 +106,22 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4229694915316365648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3984937058499595412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29ec767ab2c6e047b0e04ee768768c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  explosionPrefab: {fileID: 5087387896901980618, guid: 2feea3280526f8545af24ddf7c09be86, type: 3}
